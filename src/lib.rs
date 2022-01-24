@@ -1,11 +1,22 @@
 use std::fs;
 use std::env;
 use std::error::Error;
+use clap::Parser;
 
+#[derive(Parser, Debug)]
+#[clap(author, version, about, long_about = None)]
 pub struct Config {
+    /// string to search for
+    #[clap()]
     pub query: String,
+
+    /// file to search in
+    #[clap()]
     pub filename: String,
-    pub case_sensitive: bool,
+
+    /// Search as case insensitive
+    #[clap(short, long)]
+    pub ignore_case: bool,
 }
 
 impl Config {
